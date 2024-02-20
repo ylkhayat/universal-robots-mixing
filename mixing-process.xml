@@ -103,8 +103,8 @@
           <label>Signal mixer to start</label>
           <arguments>
             <id>!data.idStart</id>
-            <message>start</message>
-            <ttl>10</ttl>
+            <message/>
+            <ttl>0</ttl>
           </arguments>
         </parameters>
         <annotations>
