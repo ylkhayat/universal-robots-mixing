@@ -1,0 +1,279 @@
+<testset xmlns="http://cpee.org/ns/properties/2.0">
+  <executionhandler>ruby</executionhandler>
+  <dataelements>
+    <iterations>5</iterations>
+    <remainingIterations>0</remainingIterations>
+    <subProcess1ToggleDuration>20</subProcess1ToggleDuration>
+    <subProcess2ToggleDuration>16</subProcess2ToggleDuration>
+    <timeoutDuration>1</timeoutDuration>
+  </dataelements>
+  <endpoints>
+    <user>https-post://cpee.org/services/timeout-user.php</user>
+    <auto>https-post://cpee.org/services/timeout-auto.php</auto>
+    <subprocess>https-post://cpee.org/flow/start/url/</subprocess>
+    <timeout>https://cpee.org/services/timeout.php</timeout>
+    <send>https-post://cpee.org/ing/correlators/message/send/</send>
+    <receive>https-get://cpee.org/ing/correlators/message/receive/</receive>
+    <mixerintensity>https://lab.bpm.in.tum.de/ur/registers/input/int/6</mixerintensity>
+    <globaltolocal>https://lab.bpm.in.tum.de/ur/programs/Youssef/GlobalToLocal.urp/wait</globaltolocal>
+    <localpickup>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalPickup.urp/wait</localpickup>
+    <pickuptomixer>https://lab.bpm.in.tum.de/ur/programs/Youssef/PickupToMixer.urp/wait</pickuptomixer>
+    <mixertoputdown>https://lab.bpm.in.tum.de/ur/programs/Youssef/MixerToPutdown.urp/wait</mixertoputdown>
+    <localputdown>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalPutdown.urp/wait</localputdown>
+    <localtoglobal>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalToGlobal.urp/wait</localtoglobal>
+    <globaltocontrol>https://lab.bpm.in.tum.de/ur/programs/Youssef/GlobalToControl.urp/wait</globaltocontrol>
+    <controlready>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReady.urp/wait</controlready>
+    <controlreset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReset.urp/wait</controlreset>
+    <controlset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlSet.urp/wait</controlset>
+    <controlstandby>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlStandby.urp/wait</controlstandby>
+    <controltoglobal>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlToGlobal.urp/wait</controltoglobal>
+  </endpoints>
+  <attributes>
+    <info>mixer-control</info>
+    <modeltype>CPEE</modeltype>
+    <theme>extended</theme>
+  </attributes>
+  <description>
+    <description xmlns="http://cpee.org/ns/description/1.0">
+      <_probability>
+        <_probability_min/>
+        <_probability_max/>
+        <_probability_avg/>
+      </_probability>
+      <call id="a7" endpoint="mixerintensity">
+        <parameters>
+          <label>Set Mixer Intensity</label>
+          <method>:put</method>
+          <arguments>
+            <value>4</value>
+          </arguments>
+        </parameters>
+        <annotations>
+          <_generic/>
+          <_timing>
+            <_timing_weight/>
+            <_timing_avg/>
+            <explanations/>
+          </_timing>
+          <_shifting>
+            <_shifting_type>Duration</_shifting_type>
+          </_shifting>
+          <_context_data_analysis>
+            <probes/>
+            <ips/>
+          </_context_data_analysis>
+          <report>
+            <url/>
+          </report>
+          <_notes>
+            <_notes_general/>
+          </_notes>
+        </annotations>
+        <documentation>
+          <input/>
+          <output/>
+          <implementation>
+            <description/>
+          </implementation>
+        </documentation>
+      </call>
+      <call id="a6" endpoint="globaltolocal">
+        <parameters>
+          <label/>
+          <method>:post</method>
+          <arguments/>
+        </parameters>
+        <annotations>
+          <_generic/>
+          <_timing>
+            <_timing_weight/>
+            <_timing_avg/>
+            <explanations/>
+          </_timing>
+          <_shifting>
+            <_shifting_type>Duration</_shifting_type>
+          </_shifting>
+          <_context_data_analysis>
+            <probes/>
+            <ips/>
+          </_context_data_analysis>
+          <report>
+            <url/>
+          </report>
+          <_notes>
+            <_notes_general/>
+          </_notes>
+        </annotations>
+        <documentation>
+          <input/>
+          <output/>
+          <implementation>
+            <description/>
+          </implementation>
+        </documentation>
+      </call>
+      <parallel wait="-1" cancel="last">
+        <parallel_branch pass="" local="">
+          <call id="a3" endpoint="subprocess">
+            <parameters>
+              <label>Subprocess 1</label>
+              <arguments>
+                <behavior>wait_running</behavior>
+                <url>https://raw.githubusercontent.com/ylkhayat/smart-socket-service/main/docs/testsets/start-wait-stop/start-wait-stop.xml</url>
+                <init>
+                  <toggleDuration>!data.subProcess1ToggleDuration</toggleDuration>
+                </init>
+                <endpoints/>
+                <attributes/>
+                <customization/>
+              </arguments>
+            </parameters>
+            <code>
+              <prepare/>
+              <finalize output="result"/>
+              <update output="result"/>
+              <rescue output="result"/>
+            </code>
+            <annotations>
+              <_generic/>
+              <_timing>
+                <_timing_weight/>
+                <_timing_avg/>
+                <explanations/>
+              </_timing>
+              <_shifting>
+                <_shifting_type>Duration</_shifting_type>
+              </_shifting>
+              <_context_data_analysis>
+                <probes/>
+                <ips/>
+              </_context_data_analysis>
+              <report>
+                <url/>
+              </report>
+              <_notes>
+                <_notes_general/>
+              </_notes>
+            </annotations>
+            <documentation>
+              <input/>
+              <output/>
+              <implementation>
+                <description/>
+              </implementation>
+              <code>
+                <description/>
+              </code>
+            </documentation>
+          </call>
+        </parallel_branch>
+        <parallel_branch pass="" local="">
+          <call id="a4" endpoint="timeout">
+            <parameters>
+              <label>Timeout for random seconds</label>
+              <method>:post</method>
+              <arguments>
+                <timeout>!data.timeoutDuration</timeout>
+              </arguments>
+            </parameters>
+            <code>
+              <prepare/>
+              <finalize output="result"/>
+              <update output="result"/>
+              <rescue output="result"/>
+            </code>
+            <annotations>
+              <_generic/>
+              <_timing>
+                <_timing_weight/>
+                <_timing_avg/>
+                <explanations/>
+              </_timing>
+              <_shifting>
+                <_shifting_type>Duration</_shifting_type>
+              </_shifting>
+              <_context_data_analysis>
+                <probes/>
+                <ips/>
+              </_context_data_analysis>
+              <report>
+                <url/>
+              </report>
+              <_notes>
+                <_notes_general/>
+              </_notes>
+            </annotations>
+            <documentation>
+              <input/>
+              <output/>
+              <implementation>
+                <description/>
+              </implementation>
+              <code>
+                <description/>
+              </code>
+            </documentation>
+          </call>
+          <call id="a5" endpoint="subprocess">
+            <parameters>
+              <label>Subprocess 2</label>
+              <arguments>
+                <behavior>wait_running</behavior>
+                <url>https://raw.githubusercontent.com/ylkhayat/smart-socket-service/main/docs/testsets/start-wait-stop/start-wait-stop.xml</url>
+                <init>
+                  <toggleDuration>!data.subProcess2ToggleDuration</toggleDuration>
+                </init>
+                <endpoints/>
+                <attributes/>
+                <customization/>
+              </arguments>
+            </parameters>
+            <code>
+              <prepare/>
+              <finalize output="result"/>
+              <update output="result"/>
+              <rescue output="result"/>
+            </code>
+            <annotations>
+              <_generic/>
+              <_timing>
+                <_timing_weight/>
+                <_timing_avg/>
+                <explanations/>
+              </_timing>
+              <_shifting>
+                <_shifting_type>Duration</_shifting_type>
+              </_shifting>
+              <_context_data_analysis>
+                <probes/>
+                <ips/>
+              </_context_data_analysis>
+              <report>
+                <url/>
+              </report>
+              <_notes>
+                <_notes_general/>
+              </_notes>
+            </annotations>
+            <documentation>
+              <input/>
+              <output/>
+              <implementation>
+                <description/>
+              </implementation>
+              <code>
+                <description/>
+              </code>
+            </documentation>
+          </call>
+        </parallel_branch>
+      </parallel>
+      <stop id="a2"/>
+    </description>
+  </description>
+  <transformation>
+    <description type="copy"/>
+    <dataelements type="none"/>
+    <endpoints type="none"/>
+  </transformation>
+</testset>
