@@ -107,6 +107,12 @@
             <ttl>0</ttl>
           </arguments>
         </parameters>
+        <code>
+          <prepare/>
+          <finalize output="result">data.mixerResponded = false</finalize>
+          <update output="result"/>
+          <rescue output="result"/>
+        </code>
         <annotations>
           <_generic/>
           <_timing>
@@ -136,48 +142,102 @@
           <implementation>
             <description/>
           </implementation>
-        </documentation>
-      </call>
-      <call id="a5" endpoint="receive">
-        <parameters>
-          <label>Await signal from mixer </label>
-          <arguments>
-            <id>!data.idStop</id>
-            <ttl>0</ttl>
-            <delete>true</delete>
-          </arguments>
-        </parameters>
-        <annotations>
-          <_generic/>
-          <_timing>
-            <_timing_weight/>
-            <_timing_avg/>
-            <explanations/>
-          </_timing>
-          <_shifting>
-            <_shifting_type>Duration</_shifting_type>
-          </_shifting>
-          <_context_data_analysis>
-            <probes/>
-            <ips/>
-          </_context_data_analysis>
-          <report>
-            <url/>
-          </report>
-          <_notes>
-            <_notes_general/>
-          </_notes>
-        </annotations>
-        <documentation>
-          <input>
-            <item label="idStop">Id to communicate with the process to stop the mixer</item>
-          </input>
-          <output/>
-          <implementation>
+          <code>
             <description/>
-          </implementation>
+          </code>
         </documentation>
       </call>
+      <loop mode="pre_test" condition="!data.mixerResponded">
+        <_probability>
+          <_probability_min/>
+          <_probability_max/>
+          <_probability_avg/>
+        </_probability>
+        <call id="a2" endpoint="receive">
+          <parameters>
+            <label>Await signal from mixer </label>
+            <arguments>
+              <id>!data.idStop</id>
+              <ttl>0</ttl>
+              <delete>true</delete>
+            </arguments>
+          </parameters>
+          <code>
+            <prepare/>
+            <finalize output="result">data.mixerResponded = true</finalize>
+            <update output="result"/>
+            <rescue output="result">data.mixerResponded = false</rescue>
+          </code>
+          <annotations>
+            <_generic/>
+            <_timing>
+              <_timing_weight/>
+              <_timing_avg/>
+              <explanations/>
+            </_timing>
+            <_shifting>
+              <_shifting_type>Duration</_shifting_type>
+            </_shifting>
+            <_context_data_analysis>
+              <probes/>
+              <ips/>
+            </_context_data_analysis>
+            <report>
+              <url/>
+            </report>
+            <_notes>
+              <_notes_general/>
+            </_notes>
+          </annotations>
+          <documentation>
+            <input/>
+            <output/>
+            <implementation>
+              <description/>
+            </implementation>
+            <code>
+              <description/>
+            </code>
+          </documentation>
+        </call>
+        <call id="a7" endpoint="timeout">
+          <parameters>
+            <label/>
+            <method>:post</method>
+            <arguments>
+              <timeout>2</timeout>
+            </arguments>
+          </parameters>
+          <annotations>
+            <_generic/>
+            <_timing>
+              <_timing_weight/>
+              <_timing_avg/>
+              <explanations/>
+            </_timing>
+            <_shifting>
+              <_shifting_type>Duration</_shifting_type>
+            </_shifting>
+            <_context_data_analysis>
+              <probes/>
+              <ips/>
+            </_context_data_analysis>
+            <report>
+              <url/>
+            </report>
+            <_notes>
+              <_notes_general/>
+            </_notes>
+          </annotations>
+          <documentation>
+            <input/>
+            <output/>
+            <implementation>
+              <description/>
+            </implementation>
+          </documentation>
+        </call>
+      </loop>
       <call id="a6" endpoint="mixerpickuplocal">
         <parameters>
           <label>From Mixer to Pickup to Local position</label>
