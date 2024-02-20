@@ -205,7 +205,7 @@
             <label/>
             <method>:post</method>
             <arguments>
-              <timeout>2</timeout>
+              <timeout>1</timeout>
             </arguments>
           </parameters>
           <annotations>
