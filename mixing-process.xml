@@ -1,7 +1,8 @@
 <testset xmlns="http://cpee.org/ns/properties/2.0">
   <executionhandler>ruby</executionhandler>
   <dataelements>
-    <identification>i-am-unique</identification>
+    <idStart>start-mixer</idStart>
+    <idEnd>end-mixer</idEnd>
   </dataelements>
   <endpoints>
     <user>https-post://cpee.org/services/timeout-user.php</user>
@@ -138,7 +139,7 @@
         <parameters>
           <label>Signal mixer to start</label>
           <arguments>
-            <id>!data.identification</id>
+            <id>!data.idStart</id>
             <message/>
             <ttl>10</ttl>
           </arguments>
@@ -165,7 +166,9 @@
           </_notes>
         </annotations>
         <documentation>
-          <input/>
+          <input>
+            <item label="idStart">Id to communicate with the process to start the mixer</item>
+          </input>
           <output/>
           <implementation>
             <description/>
@@ -176,7 +179,7 @@
         <parameters>
           <label>Await signal from mixer </label>
           <arguments>
-            <id>!data.identification</id>
+            <id>!data.idEnd</id>
             <ttl>0</ttl>
             <delete>true</delete>
           </arguments>
@@ -203,7 +206,9 @@
           </_notes>
         </annotations>
         <documentation>
-          <input/>
+          <input>
+            <item label="idEnd">Id to communicate with the process to stop the mixer</item>
+          </input>
           <output/>
           <implementation>
             <description/>

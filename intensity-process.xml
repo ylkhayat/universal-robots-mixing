@@ -12,7 +12,6 @@
     <receive>https-get://cpee.org/ing/correlators/message/receive/</receive>
     <mixerintensity>https://lab.bpm.in.tum.de/ur/registers/input/int/6</mixerintensity>
     <globaltocontrol>https://lab.bpm.in.tum.de/ur/programs/Youssef/GlobalToControl.urp/wait</globaltocontrol>
-    <controlready>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReady.urp/wait</controlready>
     <controlreset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReset.urp/wait</controlreset>
     <controlset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlSet.urp/wait</controlset>
     <controltoglobal>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlToGlobal.urp/wait</controltoglobal>
@@ -59,7 +58,9 @@
           </_notes>
         </annotations>
         <documentation>
-          <input/>
+          <input>
+            <item label="mixerintensity">Expects the input to set the intensity of the mixer</item>
+          </input>
           <output/>
           <implementation>
             <description/>
@@ -101,42 +102,7 @@
           </implementation>
         </documentation>
       </call>
-      <call id="a3" endpoint="controlready">
-        <parameters>
-          <label>Move to mixer ready position</label>
-          <method>:put</method>
-          <arguments/>
-        </parameters>
-        <annotations>
-          <_generic/>
-          <_timing>
-            <_timing_weight/>
-            <_timing_avg/>
-            <explanations/>
-          </_timing>
-          <_shifting>
-            <_shifting_type>Duration</_shifting_type>
-          </_shifting>
-          <_context_data_analysis>
-            <probes/>
-            <ips/>
-          </_context_data_analysis>
-          <report>
-            <url/>
-          </report>
-          <_notes>
-            <_notes_general/>
-          </_notes>
-        </annotations>
-        <documentation>
-          <input/>
-          <output/>
-          <implementation>
-            <description/>
-          </implementation>
-        </documentation>
-      </call>
-      <call id="a4" endpoint="controlreset">
+      <call id="a3" endpoint="controlreset">
         <parameters>
           <label>Reset mixer to 0</label>
           <method>:put</method>
@@ -164,14 +130,16 @@
           </_notes>
         </annotations>
         <documentation>
-          <input/>
+          <input>
+            <item label=""/>
+          </input>
           <output/>
           <implementation>
             <description/>
           </implementation>
         </documentation>
       </call>
-      <call id="a5" endpoint="controlset">
+      <call id="a4" endpoint="controlset">
         <parameters>
           <label>Set mixer to the value inputed</label>
           <method>:put</method>
@@ -206,7 +174,7 @@
           </implementation>
         </documentation>
       </call>
-      <call id="a6" endpoint="controltoglobal">
+      <call id="a5" endpoint="controltoglobal">
         <parameters>
           <label>From Control to Global position</label>
           <method>:put</method>
