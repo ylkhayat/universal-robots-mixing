@@ -2,10 +2,10 @@
     <executionhandler>ruby</executionhandler>
     <dataelements>
         <idStart>start-mixer</idStart>
+        <mixerSignaled>true</mixerSignaled>
         <idStop>stop-mixer</idStop>
-        <mixerIntensity>1</mixerIntensity>
+        <mixerIntensity>2</mixerIntensity>
         <mixingTime>10</mixingTime>
-        <mixerStarted>false</mixerStarted>
     </dataelements>
     <endpoints>
         <user>https-post://cpee.org/services/timeout-user.php</user>
@@ -73,8 +73,8 @@
                 </call>
                 <parallel wait="-1" cancel="last">
                     <parallel_branch pass="" local="">
-                        <manipulate id="a1" label="">data.mixerStarted = false</manipulate>
-                        <loop mode="pre_test" condition="!data.mixerStarted">
+                        <manipulate id="a1" label="">data.mixerSignaled = false</manipulate>
+                        <loop mode="pre_test" condition="!data.mixerSignaled">
                             <_probability>
                                 <_probability_min/>
                                 <_probability_max/>
@@ -90,10 +90,10 @@
                                     </arguments>
                                 </parameters>
                                 <code>
-                                    <prepare>data.mixerStarted = false</prepare>
-                                    <finalize output="result">data.mixerStarted = true</finalize>
+                                    <prepare/>
+                                    <finalize output="result">data.mixerSignaled = true</finalize>
                                     <update output="result"/>
-                                    <rescue output="result">data.mixerStarted = false</rescue>
+                                    <rescue output="result">data.mixerSignaled = false</rescue>
                                 </code>
                                 <annotations>
                                     <_generic/>
