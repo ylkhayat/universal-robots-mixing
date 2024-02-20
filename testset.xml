@@ -1,7 +1,8 @@
 <testset xmlns="http://cpee.org/ns/properties/2.0">
     <executionhandler>ruby</executionhandler>
     <dataelements>
-        <identification>i-am-unique</identification>
+        <idStart>start-mixer</idStart>
+        <idStop>stop-mixer</idStop>
         <mixerintensity>3</mixerintensity>
     </dataelements>
     <endpoints>
@@ -74,7 +75,7 @@
                             <parameters>
                                 <label>Signal Mixer Start</label>
                                 <arguments>
-                                    <id>!data.identification</id>
+                                    <id>!data.idStart</id>
                                     <ttl>0</ttl>
                                     <delete>true</delete>
                                 </arguments>
@@ -147,7 +148,7 @@
                         </call>
                         <call id="a3" endpoint="subprocess">
                             <parameters>
-                                <label>Subprocess 1</label>
+                                <label>Adjust Mixing Power</label>
                                 <arguments>
                                     <behavior>wait_running</behavior>
                                     <url>https://raw.githubusercontent.com/ylkhayat/smart-socket-service/main/docs/testsets/start-wait-stop/start-wait-stop.xml</url>
@@ -238,7 +239,7 @@
                             <parameters>
                                 <label>Signal Mixer Done</label>
                                 <arguments>
-                                    <id>!data.identification</id>
+                                    <id>!data.idStop</id>
                                     <message/>
                                     <ttl>0</ttl>
                                 </arguments>
@@ -276,12 +277,13 @@
                     <parallel_branch pass="" local="">
                         <call id="a5" endpoint="subprocess">
                             <parameters>
-                                <label>Subprocess 2</label>
+                                <label>Get Mixing</label>
                                 <arguments>
                                     <behavior>wait_running</behavior>
                                     <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/mixing-process.xml</url>
                                     <init>
-                                        <identification>!data.identification</identification>
+                                        <idStart>!data.idStart</idStart>
+                                        <idStop>!data.idStop</idStop>
                                     </init>
                                     <endpoints/>
                                     <attributes/>
