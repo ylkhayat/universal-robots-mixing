@@ -158,7 +158,7 @@
             <label>Await signal from mixer </label>
             <arguments>
               <id>!data.idStop</id>
-              <ttl>0</ttl>
+              <ttl>5</ttl>
               <delete>true</delete>
             </arguments>
           </parameters>
