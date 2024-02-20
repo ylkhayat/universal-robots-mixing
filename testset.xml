@@ -1,11 +1,8 @@
 <testset xmlns="http://cpee.org/ns/properties/2.0">
     <executionhandler>ruby</executionhandler>
     <dataelements>
-        <iterations>5</iterations>
-        <remainingIterations>0</remainingIterations>
-        <subProcess1ToggleDuration>20</subProcess1ToggleDuration>
-        <subProcess2ToggleDuration>16</subProcess2ToggleDuration>
-        <timeoutDuration>1</timeoutDuration>
+        <identification>i-am-unique</identification>
+        <mixerintensity>3</mixerintensity>
     </dataelements>
     <endpoints>
         <user>https-post://cpee.org/services/timeout-user.php</user>
@@ -14,27 +11,6 @@
         <timeout>https://cpee.org/services/timeout.php</timeout>
         <send>https-post://cpee.org/ing/correlators/message/send/</send>
         <receive>https-get://cpee.org/ing/correlators/message/receive/</receive>
-        <mixerintensity>https://lab.bpm.in.tum.de/ur/registers/input/int/6</mixerintensity>
-        <!-- Separate -->
-        <globaltolocal>https://lab.bpm.in.tum.de/ur/programs/Youssef/GlobalToLocal/wait</globaltolocal>
-        <localpickup>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalPickup/wait</localpickup>
-        <pickuptomixer>https://lab.bpm.in.tum.de/ur/programs/Youssef/PickupToMixer/wait</pickuptomixer>
-        <mixertoputdown>https://lab.bpm.in.tum.de/ur/programs/Youssef/MixerToPutdown/wait</mixertoputdown>
-        <localputdown>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalPutdown/wait</localputdown>
-        <localtoglobal>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalToGlobal/wait</localtoglobal>
-        <!-- <localtomixer>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalToMixer/wait</localtomixer> -->
-        <!-- <mixertolocal>https://lab.bpm.in.tum.de/ur/programs/Youssef/MixerToLocal/wait</mixertolocal> -->
-        <!-- Separate -->
-        <globaltocontrol>https://lab.bpm.in.tum.de/ur/programs/Youssef/GlobalToControl/wait</globaltocontrol>
-        <controlready>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReady/wait</controlready>
-        <controlreset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReset/wait</controlreset>
-        <controlset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlSet/wait</controlset>
-        <controlstandby>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlStandby/wait</controlstandby>
-        <controltoglobal>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlToGlobal/wait</controltoglobal>
-        <!-- Separate -->
-        <processfullexperiment>https://lab.bpm.in.tum.de/ur/programs/Youssef/ProcessFullExperiment/wait</processfullexperiment>
-        <processintensity>https://lab.bpm.in.tum.de/ur/programs/Youssef/ProcessIntensity/wait</processintensity>
-        <processmixing>https://lab.bpm.in.tum.de/ur/programs/Youssef/ProcessMixing/wait</processmixing>
     </endpoints>
     <attributes>
         <info>mixer-control</info>
@@ -43,22 +19,24 @@
     </attributes>
     <description>
         <description xmlns="http://cpee.org/ns/description/1.0">
-            <manipulate id="a1" label="Set up the iterations counter">data.remainingIterations = data.iterations</manipulate>
-            <loop mode="pre_test" condition="data.remainingIterations &gt; 0">
+            <loop mode="pre_test" condition="true">
                 <_probability>
                     <_probability_min/>
                     <_probability_max/>
                     <_probability_avg/>
                 </_probability>
-                <manipulate id="a2" label="Initialize random durations">data.subProcess1ToggleDuration = rand(10..35)
-data.subProcess2ToggleDuration = rand(10..30)
-data.timeoutDuration = rand(1..5)</manipulate>
-                <call id="a7" endpoint="">
+                <call id="a7" endpoint="subprocess">
                     <parameters>
-                        <label/>
-                        <method>:put</method>
+                        <label>Set Intensity For Mixer</label>
                         <arguments>
-                            <value>4</value>
+                            <behavior>wait_running</behavior>
+                            <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/intensity-process.xml</url>
+                            <init>
+                                <mixerintensity>!data.mixerintensity</mixerintensity>
+                            </init>
+                            <endpoints/>
+                            <attributes/>
+                            <customization/>
                         </arguments>
                     </parameters>
                     <annotations>
@@ -92,6 +70,81 @@ data.timeoutDuration = rand(1..5)</manipulate>
                 </call>
                 <parallel wait="-1" cancel="last">
                     <parallel_branch pass="" local="">
+                        <call id="a1" endpoint="receive">
+                            <parameters>
+                                <label>Signal Mixer Start</label>
+                                <arguments>
+                                    <id>!data.identification</id>
+                                    <ttl>0</ttl>
+                                    <delete>true</delete>
+                                </arguments>
+                            </parameters>
+                            <annotations>
+                                <_generic/>
+                                <_timing>
+                                    <_timing_weight/>
+                                    <_timing_avg/>
+                                    <explanations/>
+                                </_timing>
+                                <_shifting>
+                                    <_shifting_type>Duration</_shifting_type>
+                                </_shifting>
+                                <_context_data_analysis>
+                                    <probes/>
+                                    <ips/>
+                                </_context_data_analysis>
+                                <report>
+                                    <url/>
+                                </report>
+                                <_notes>
+                                    <_notes_general/>
+                                </_notes>
+                            </annotations>
+                            <documentation>
+                                <input/>
+                                <output/>
+                                <implementation>
+                                    <description/>
+                                </implementation>
+                            </documentation>
+                        </call>
+                        <call id="a8" endpoint="timeout">
+                            <parameters>
+                                <label>Smooth out the signals</label>
+                                <method>:post</method>
+                                <arguments>
+                                    <timeout>2</timeout>
+                                </arguments>
+                            </parameters>
+                            <annotations>
+                                <_generic/>
+                                <_timing>
+                                    <_timing_weight/>
+                                    <_timing_avg/>
+                                    <explanations/>
+                                </_timing>
+                                <_shifting>
+                                    <_shifting_type>Duration</_shifting_type>
+                                </_shifting>
+                                <_context_data_analysis>
+                                    <probes/>
+                                    <ips/>
+                                </_context_data_analysis>
+                                <report>
+                                    <url/>
+                                </report>
+                                <_notes>
+                                    <_notes_general/>
+                                </_notes>
+                            </annotations>
+                            <documentation>
+                                <input/>
+                                <output/>
+                                <implementation>
+                                    <description/>
+                                </implementation>
+                            </documentation>
+                        </call>
                         <call id="a3" endpoint="subprocess">
                             <parameters>
                                 <label>Subprocess 1</label>
@@ -144,22 +197,14 @@ data.timeoutDuration = rand(1..5)</manipulate>
                                 </code>
                             </documentation>
                         </call>
-                    </parallel_branch>
-                    <parallel_branch pass="" local="">
-                        <call id="a4" endpoint="timeout">
+                        <call id="a9" endpoint="timeout">
                             <parameters>
-                                <label>Timeout for random seconds</label>
+                                <label>Smooth out the signals</label>
                                 <method>:post</method>
                                 <arguments>
-                                    <timeout>!data.timeoutDuration</timeout>
+                                    <timeout>2</timeout>
                                 </arguments>
                             </parameters>
-                            <code>
-                                <prepare/>
-                                <finalize output="result"/>
-                                <update output="result"/>
-                                <rescue output="result"/>
-                            </code>
                             <annotations>
                                 <_generic/>
                                 <_timing>
@@ -187,19 +232,56 @@ data.timeoutDuration = rand(1..5)</manipulate>
                                 <implementation>
                                     <description/>
                                 </implementation>
-                                <code>
-                                    <description/>
-                                </code>
                             </documentation>
                         </call>
+                        <call id="a2" endpoint="send">
+                            <parameters>
+                                <label>Signal Mixer Done</label>
+                                <arguments>
+                                    <id>!data.identification</id>
+                                    <message/>
+                                    <ttl>0</ttl>
+                                </arguments>
+                            </parameters>
+                            <annotations>
+                                <_generic/>
+                                <_timing>
+                                    <_timing_weight/>
+                                    <_timing_avg/>
+                                    <explanations/>
+                                </_timing>
+                                <_shifting>
+                                    <_shifting_type>Duration</_shifting_type>
+                                </_shifting>
+                                <_context_data_analysis>
+                                    <probes/>
+                                    <ips/>
+                                </_context_data_analysis>
+                                <report>
+                                    <url/>
+                                </report>
+                                <_notes>
+                                    <_notes_general/>
+                                </_notes>
+                            </annotations>
+                            <documentation>
+                                <input/>
+                                <output/>
+                                <implementation>
+                                    <description/>
+                                </implementation>
+                            </documentation>
+                        </call>
+                    </parallel_branch>
+                    <parallel_branch pass="" local="">
                         <call id="a5" endpoint="subprocess">
                             <parameters>
                                 <label>Subprocess 2</label>
                                 <arguments>
                                     <behavior>wait_running</behavior>
-                                    <url>https://raw.githubusercontent.com/ylkhayat/smart-socket-service/main/docs/testsets/start-wait-stop/start-wait-stop.xml</url>
+                                    <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/mixing-process.xml</url>
                                     <init>
-                                        <toggleDuration>!data.subProcess2ToggleDuration</toggleDuration>
+                                        <identification>!data.identification</identification>
                                     </init>
                                     <endpoints/>
                                     <attributes/>
@@ -246,7 +328,7 @@ data.timeoutDuration = rand(1..5)</manipulate>
                         </call>
                     </parallel_branch>
                 </parallel>
-                <manipulate id="a6" label="Update iterations counter">data.remainingIterations = data.remainingIterations - 1</manipulate>
+                <stop id="a4"/>
             </loop>
         </description>
     </description>
