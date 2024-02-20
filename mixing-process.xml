@@ -13,7 +13,7 @@
     <receive>https-get://cpee.org/ing/correlators/message/receive/</receive>
     <globaltolocal>https://lab.bpm.in.tum.de/ur/programs/Youssef/GlobalToLocal.urp/wait</globaltolocal>
     <localpickupmixer>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalPickupMixer.urp/wait</localpickupmixer>
-    <mixerpickuplocal>https://lab.bpm.in.tum.de/ur/programs/Youssef/MixerPickuptLocal.urp/wait</mixerpickuplocal>
+    <mixerpickuplocal>https://lab.bpm.in.tum.de/ur/programs/Youssef/MixerPickupLocal.urp/wait</mixerpickuplocal>
     <localtoglobal>https://lab.bpm.in.tum.de/ur/programs/Youssef/LocalToGlobal.urp/wait</localtoglobal>
   </endpoints>
   <attributes>
@@ -158,7 +158,7 @@
             <label>Await signal from mixer </label>
             <arguments>
               <id>!data.idStop</id>
-              <ttl>5</ttl>
+              <ttl>0</ttl>
               <delete>true</delete>
             </arguments>
           </parameters>
