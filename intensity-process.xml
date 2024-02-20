@@ -15,7 +15,6 @@
     <controlready>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReady.urp/wait</controlready>
     <controlreset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlReset.urp/wait</controlreset>
     <controlset>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlSet.urp/wait</controlset>
-    <controlstandby>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlStandby.urp/wait</controlstandby>
     <controltoglobal>https://lab.bpm.in.tum.de/ur/programs/Youssef/ControlToGlobal.urp/wait</controltoglobal>
   </endpoints>
   <attributes>
@@ -207,42 +206,7 @@
           </implementation>
         </documentation>
       </call>
-      <call id="a6" endpoint="controlstandby">
-        <parameters>
-          <label>Move to control standby position</label>
-          <method>:put</method>
-          <arguments/>
-        </parameters>
-        <annotations>
-          <_generic/>
-          <_timing>
-            <_timing_weight/>
-            <_timing_avg/>
-            <explanations/>
-          </_timing>
-          <_shifting>
-            <_shifting_type>Duration</_shifting_type>
-          </_shifting>
-          <_context_data_analysis>
-            <probes/>
-            <ips/>
-          </_context_data_analysis>
-          <report>
-            <url/>
-          </report>
-          <_notes>
-            <_notes_general/>
-          </_notes>
-        </annotations>
-        <documentation>
-          <input/>
-          <output/>
-          <implementation>
-            <description/>
-          </implementation>
-        </documentation>
-      </call>
-      <call id="a7" endpoint="controltoglobal">
+      <call id="a6" endpoint="controltoglobal">
         <parameters>
           <label>From Control to Global position</label>
           <method>:put</method>
@@ -277,7 +241,6 @@
           </implementation>
         </documentation>
       </call>
-      <stop id="a8"/>
     </description>
   </description>
   <transformation>
