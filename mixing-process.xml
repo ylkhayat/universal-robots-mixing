@@ -2,7 +2,7 @@
   <executionhandler>ruby</executionhandler>
   <dataelements>
     <idStart>start-mixer</idStart>
-    <idEnd>end-mixer</idEnd>
+    <idStop>stop-mixer</idStop>
   </dataelements>
   <endpoints>
     <user>https-post://cpee.org/services/timeout-user.php</user>
@@ -179,7 +179,7 @@
         <parameters>
           <label>Await signal from mixer </label>
           <arguments>
-            <id>!data.idEnd</id>
+            <id>!data.idStop</id>
             <ttl>0</ttl>
             <delete>true</delete>
           </arguments>
@@ -207,7 +207,7 @@
         </annotations>
         <documentation>
           <input>
-            <item label="idEnd">Id to communicate with the process to stop the mixer</item>
+            <item label="idStop">Id to communicate with the process to stop the mixer</item>
           </input>
           <output/>
           <implementation>
