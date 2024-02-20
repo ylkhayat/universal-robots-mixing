@@ -140,7 +140,7 @@
           <label>Signal mixer to start</label>
           <arguments>
             <id>!data.idStart</id>
-            <message/>
+            <message>start</message>
             <ttl>10</ttl>
           </arguments>
         </parameters>

@@ -3,7 +3,8 @@
     <dataelements>
         <idStart>start-mixer</idStart>
         <idStop>stop-mixer</idStop>
-        <mixerintensity>3</mixerintensity>
+        <mixerIntensity>3</mixerIntensity>
+        <mixingTime>10</mixingTime>
     </dataelements>
     <endpoints>
         <user>https-post://cpee.org/services/timeout-user.php</user>
@@ -33,7 +34,7 @@
                             <behavior>wait_running</behavior>
                             <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/intensity-process.xml</url>
                             <init>
-                                <mixerintensity>!data.mixerintensity</mixerintensity>
+                                <mixerintensity>!data.mixerIntensity</mixerintensity>
                             </init>
                             <endpoints/>
                             <attributes/>
@@ -153,7 +154,7 @@
                                     <behavior>wait_running</behavior>
                                     <url>https://raw.githubusercontent.com/ylkhayat/smart-socket-service/main/docs/testsets/start-wait-stop/start-wait-stop.xml</url>
                                     <init>
-                                        <toggleDuration>!data.subProcess1ToggleDuration</toggleDuration>
+                                        <toggleDuration>!data.mixingTime</toggleDuration>
                                     </init>
                                     <endpoints/>
                                     <attributes/>
