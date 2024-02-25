@@ -33,7 +33,7 @@
                         <label>Set Intensity For Mixer</label>
                         <arguments>
                             <behavior>wait_running</behavior>
-                            <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/intensity-process.xml</url>
+                            <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/testsets/intensity-process.xml</url>
                             <init>
                                 <mixerintensity>!data.mixerIntensity</mixerintensity>
                             </init>
@@ -262,7 +262,7 @@
                                 <label>Get Mixing</label>
                                 <arguments>
                                     <behavior>wait_running</behavior>
-                                    <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/mixing-process.xml</url>
+                                    <url>https://raw.githubusercontent.com/ylkhayat/universal-robots-mixing/main/testsets/mixing-process.xml</url>
                                     <init>
                                         <idStart>!data.idStart</idStart>
                                         <idStop>!data.idStop</idStop>
