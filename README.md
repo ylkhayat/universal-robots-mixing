@@ -7,7 +7,7 @@
 
 ## 🗓️ Project Overview
 
-This is a project done by Elkhayat, Youssef (myself), a M.Sc student at the University of Munich, Technische Universität München. The project was done as part of the praktikum [Sustainable Process Automation](https://www.ph.tum.de/academics/org/cc/course/950733595/) with the [Chair of Information Systems and Business Process Management](https://www.cs.cit.tum.de/bpm/chair/) under the supervision of [Mangler, Jürgen - Dr. rer. soc. oec.](https://campus.tum.de/tumonline/visitenkarte.show_vcard?pPersonenId=88335AE8FDA7F2B9&pPersonenGruppe=3).
+This is a project done by Elkhayat, Youssef (myself), a M.Sc student in the Data Engineering & Analytics program at the Technische Universität München, Deutschland. The project was done as part of the praktikum [Sustainable Process Automation](https://www.ph.tum.de/academics/org/cc/course/950733595/) with the [Chair of Information Systems and Business Process Management](https://www.cs.cit.tum.de/bpm/chair/) under the supervision and assistance of [Mangler, Jürgen - Dr. rer. soc. oec.](https://campus.tum.de/tumonline/visitenkarte.show_vcard?pPersonenId=88335AE8FDA7F2B9&pPersonenGruppe=3).
 
 ### 📚 Project Description
 
