@@ -42,7 +42,7 @@ The design of this task was split into two main functionalities that the robot h
 | `MixerPickupLocal` is the program responsible to path back from the mixer ready position, to put back the glass at the pick up position (putdown position) and then proceeds to the local position.                               | ![Mixing Process Mid](./mixing-process-mid-end.gif)                                                                                                                                                                                                                                                                                                             |
 | ![Mixing Process End](./mixing-process-end.gif)                                                                                                                                                                                   | `LocalToGlobal` is the program that is responsible for **Cobi** to move from the local position to the global position.                                                                                                                                                                                                                                         |
 
-#### 📈 Testets
+## 📈 Testets
 
 The BPMs are the Business Process Models that are used to orchestrate the robotic arm and the mixer. The BPMs are defined in the [testsets directory](./testsets). The BPMs are used to define the sequence of the tasks that the robotic arm and the mixer have to perform.
 
