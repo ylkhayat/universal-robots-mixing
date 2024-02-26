@@ -1,20 +1,18 @@
 #!/bin/bash
 
-# URL to fetch
 url="https://lab.bpm.in.tum.de/ur/programs/Youssef"
 
-# Directory to save the downloaded files
 dir="programs"
 
-# Create the directory if it doesn't exist
 mkdir -p $dir
+html_array=$(curl -s $url)
+shell_array=($(echo $html_array | jq -r '.[]'))
 
-# Fetch the HTML content
-html=$(curl -s $url)
-echo $html
+for file_name in "${shell_array[@]}"; do
+    # file_name=$(sed 's/.urp//g' <<<$file)
+    file_url="${url}/${file_name}"
+    echo "Downloading $file_url"
+    curl -o "${dir}/${file_name}" $file_url
+done
 
-# # Extract the URLs and download each one
-# echo "$html" | grep -o 'https://lab\.bpm\.in\.tum\.de/ur/programs/Youssef/[^"]*\.urp' | while read -r line; do
-#     file_name=$(basename $line)
-#     curl -o "${dir}/${file_name}" $line
-# done
+wait
